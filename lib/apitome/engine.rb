@@ -2,11 +2,11 @@ module Apitome
   class Engine < ::Rails::Engine
     isolate_namespace Apitome
 
-    config.assets.precompile += %w( apitome/*.css apitome/*.js )
 
     initializer :assets, group: :all do |app|
       # default the root if it's not set
       Apitome.configuration.root ||= app.root
+      app.config.assets.precompile += %w( apitome/*.css apitome/*.js )
     end
 
     config.after_initialize do |app|
