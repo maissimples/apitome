@@ -45,8 +45,19 @@ class Apitome::DocsController < ActionController::Base
     if text
       if defined?(GitHub::Markdown)
         GitHub::Markdown.render_gfm(text)
-      else
+      elsif defined?(Kramdown::Document)
         Kramdown::Document.new(text).to_html
+      elsif defined?(Redcarpet::Markdown)
+        @@__redcarpet ||= Redcarpet::Markdown.new(
+          Redcarpet::Render::HTML,
+          {
+            disable_indented_code_blocks: true,
+            fenced_code_blocks: true,
+            tables: true,
+            no_intra_emphasis: true
+          }
+        )
+        @@__redcarpet.render(text)
       end
     end
   end
