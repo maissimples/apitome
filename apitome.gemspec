@@ -17,6 +17,6 @@ Gem::Specification.new do |s|
   s.files       = Dir['{app,config,lib,vendor}/**/*'] + ['MIT.LICENSE', 'README.md']
   s.test_files  = Dir['{spec}/**/*']
 
-  s.add_dependency 'railties', ['>= 3.2.5', '< 7']
+  s.add_dependency 'railties', ['>= 3.2.5', '< 8']
   s.add_dependency 'rspec_api_documentation'
 end
